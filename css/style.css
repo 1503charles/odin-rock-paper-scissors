@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;700&family=Roboto:ital,wght@0,400;0,700;1,100&display=swap');
+
+:root {
+    --primary-color: #fff;
+    --dark-color: #333;
+    --light-color: #007bff;
+    --lose-color: #990000;
+    --win-color: #009961;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Dosis', sans-serif;
+}
+
+.header h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    font-size: 48px;
+    /* margin-left: auto;
+    margin-right: auto; */
+}
+
+
+.game {
+    display: flex;
+    justify-content: center;
+    margin-top: 3vh;
+}
+
+.restart {
+    display: flex;
+    justify-content: center;
+    height: 30px;
+}
+
+.restart-btn {
+    border-radius: 5px;
+    padding: 0 1rem;
+    cursor: pointer;
+}
+
+.restart-btn:hover {
+    background: var(--light-color);
+    color: var(--primary-color);
+}
+
+.scoreboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;
+}
+
+.symbols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10rem;
+    text-align: center;
+    height: 40px;
+    margin-top: 10vh;
+}
+
+.fa-regular {
+    cursor: pointer;
+}
+
+.fa-regular:hover {
+    color: var(--light-color);
+}
+
+.symbols h3 {
+    margin-bottom: 2rem;
+}
+
+
+/* Modal */
+.result p {
+    font-size: 24px;
+}
+
+.text-win {
+    color: var(--win-color);
+}
+
+.text-lose {
+    color: var(--lose-color);
+}
