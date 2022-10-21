@@ -14,7 +14,7 @@
         <h1>Rock Paper Scissors</h1>
 
         <div class="game">
-            <div class="restart">
+            <div class="restart" id="restart">
                 <button class="restart-btn">
                     <h4>Restart game</h4>
                 </button>
@@ -22,34 +22,34 @@
         </div>
     </section>
 
-    <div class="scoreboard">
+    <div class="scoreboard" id="score">
         <h2>Player: 0</h2>
         <h2>Computer: 0</h2>
     </div>
 
-    <section class="choices">
+    <section class="choices" id="choices">
         <div class="symbols">
             <div class="rock">
                 <h3>Rock</h3>
-                <i class="fa-regular fa-hand-back-fist fa-10x"></i>     
+                <i id="rock" class="choice fa-regular fa-hand-back-fist fa-10x"></i>     
             </div>
             <div class="paper">
                 <h3>Paper</h3>   
-                <i class="fa-regular fa-hand fa-10x"></i>     
+                <i  id="paper" class="choice fa-regular fa-hand fa-10x"></i>     
             </div>   
             <div class="scissors">
                 <h3>Scissors</h3>
-                <i class="fa-regular fa-hand-scissors fa-10x"></i>
+                <i id="scissors" class="choice fa-regular fa-hand-scissors fa-10x"></i>
             </div>
         </div>
     </section>
 
     <!-- Modal -->
-    <div class="modal">
-        <div class="result">
-            <h1 class="text-win">You Win!</h1>
+    <div class="modal" id="modal">
+        <div class="result" id="result">
+            <!-- <h1 class="text-win">You Win!</h1>
             <i class="fa-regular fa-hand-back-fist fa-10x"></i>     
-            <p>Computer Chose Rock</p>
+            <p>Computer Chose Rock</p> -->
         </div>
     </div>
 
