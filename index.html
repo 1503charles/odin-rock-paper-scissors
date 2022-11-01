@@ -6,52 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/css/modal.css">
-    <title>Odin Rock Paper Scissors</title>
+    <!-- <link rel="stylesheet" href="/css/modal.css"> -->
+    <title>Rock Paper Scissors JS Game</title>
 </head>
 <body>
+<!-- Header -->
     <section class="header">
         <h1>Rock Paper Scissors</h1>
-
-        <div class="game">
+<!-- Restart -->
+        <!-- <div class="game">
             <div class="restart" id="restart">
                 <button class="restart-btn">
                     <h4>Restart game</h4>
                 </button>
             </div>
-        </div>
+        </div> -->
     </section>
 
-    <div class="scoreboard" id="score">
-        <h2>Player: 0</h2>
-        <h2>Computer: 0</h2>
+<!-- RPS -->
+<section class="RPS" id="choices">
+    <div class="symbols">
+
+        <div id="container">
+            <button id="rock" class="Rock fa-regular fa-hand-back-fist fa-10x"></button>
+            <button id="paper" class="Paper fa-regular fa-hand fa-10x"></button>
+            <button id="scissors" class="Scissors fa-regular fa-hand-scissors fa-10x"></button>
+        </div>
     </div>
 
-    <section class="choices" id="choices">
-        <div class="symbols">
-            <div class="rock">
-                <h3>Rock</h3>
-                <i id="rock" class="choice fa-regular fa-hand-back-fist fa-10x"></i>     
-            </div>
-            <div class="paper">
-                <h3>Paper</h3>   
-                <i  id="paper" class="choice fa-regular fa-hand fa-10x"></i>     
-            </div>   
-            <div class="scissors">
-                <h3>Scissors</h3>
-                <i id="scissors" class="choice fa-regular fa-hand-scissors fa-10x"></i>
-            </div>
-        </div>
-    </section>
+</section>
 
-    <!-- Modal -->
-    <div class="modal" id="modal">
+<!-- Modal -->
+    <!-- <div class="modal" id="modal">
         <div class="result" id="result">
-            <!-- <h1 class="text-win">You Win!</h1>
+            <h1 class="text-win">You Win!</h1>
             <i class="fa-regular fa-hand-back-fist fa-10x"></i>     
-            <p>Computer Chose Rock</p> -->
+            <p>Computer Chose Rock</p>
         </div>
-    </div>
+    </div> -->
 
 
 

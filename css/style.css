@@ -4,8 +4,8 @@
     --primary-color: #fff;
     --dark-color: #333;
     --light-color: #007bff;
-    --lose-color: #990000;
-    --win-color: #009961;
+    /* --lose-color: #990000;
+    --win-color: #009961; */
 }
 
 * {
@@ -58,12 +58,12 @@ body {
     margin-top: 5rem;
 }
 
-.choices {
+#choices {
     display: flex;
     justify-content: center;
 }
 
-.symbols {
+.container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10rem;
@@ -85,7 +85,7 @@ body {
 }
 
 
-/* Modal */
+/* Modal
 .result p {
     font-size: 24px;
 }
@@ -96,4 +96,4 @@ body {
 
 .text-lose {
     color: var(--lose-color);
-}
+} */

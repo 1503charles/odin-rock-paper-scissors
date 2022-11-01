@@ -1,117 +1,142 @@
-const choices = document.querySelectorAll('.choice')
-const result = document.getElementById('result')
-const restart = document.getElementById('restart')
-const score = document.getElementById('score')
-const modal = document.querySelector('.modal')
-const scoreboard = {
-    player: 0,
-    computer: 0
-}
-
-//Play game
-function play(e) {
-    restart.style.display = 'inline-block'
-    const playerChoice = e.target.id;
-    const computerChoice = getComputerChoice();
-    const winner = getWinner(playerChoice, computerChoice);
-    showWinner(winner, computerChoice);
-}
-
-// Get computers choice
-function getComputerChoice() {
-    const rand = Math.random();
-    if(rand < 0.34) {
-        return 'rock';
-    }   else if(rand <= 0.67) {
-        return 'paper';
-    }   else {
-        return 'scissors';
+// computer play that is randomly generated each time called
+function computerPlay() {
+    let rock = "Rock";
+    let paper = "Paper";
+    let scissors = "Scissors";
+    let getRandomValue = Math.random();
+    if (getRandomValue <= 0.33) {
+        return rock;
+    } else if (getRandomValue <= 0.66) {
+        return paper;
+    } else {
+        return scissors;
     }
 }
 
-// Get game winner
-function getWinner(p, c) {
-    if(p === c) {
-        return 'draw';
-    }   else if(p === 'rock') {
-        if(c === 'paper') {
-            return 'computer';
-        }   else {
-            return 'player';
+// the game start
+function game() {
+    let playerWin = 0;
+    let computerWin = 0;
+    let gameWinner = "";
+
+    //  Add event listeners for all three buttons/run round on click/track and end game
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            playerSelection = button.id;
+            const computerSelection = computerPlay();
+            battleWinText.textContent = (playRound(playerSelection, computerSelection));
+            playerWinText.textContent = "Player Win totals: " + playerWin;
+            computerWinText.textContent = "Computer Win totals: " + computerWin;
+            endGame();
+        })
+    })
+
+        // play the round and determine winner
+        function playRound(playerSelection, computerSelection) {
+            let tie = "It's a Tie! You selected " + playerSelection + " and the computer selected " + computerSelection + ".";
+            let paperBeatRock = "You Win!  You selected " + playerSelection + " and the computer selected " + computerSelection + ".";
+            let scissorsBeatPaperLoss = "You lose!  You selected " + playerSelection + " and the computer selected " + computerSelection + ".";
+            let paperBeatRockLoss = "You lose!  You selected " + playerSelection + " and the computer selected " + computerSelection + ".";
+            let rockBeatScissors = "You Win!  You selected " + playerSelection + " and the computer selected " + computerSelection + ".";
+            let rockBeatScissorsLoss = "You lose!  You selected " + playerSelection + " and the computer selected " + computerSelection + ".";
+            let scissorsBeatPaper = "You Win!  You selected " + playerSelection + " and the computer selected " + computerSelection + ".";
+
+            if (playerSelection === computerSelection) {
+                return tie;
+            } else if ((playerSelection === "Paper") && (computerSelection === "Rock")) {
+                playerWin++;
+                return paperBeatRock;
+            } else if ((playerSelection === "Paper") && (computerSelection === "Scissors")) {
+                computerWin++;
+                return scissorsBeatPaperLoss;
+            } else if ((playerSelection === "Rock") && (computerSelection === "Paper")) {
+                computerWin++;
+                return paperBeatRockLoss;
+            } else if ((playerSelection === "Rock") && (computerSelection === "Scissors")) {
+                playerWin++;
+                return rockBeatScissors;
+            } else if ((playerSelection === "Scissors") && (computerSelection === "Rock")) {
+                computerWin++;
+                return rockBeatScissorsLoss;
+            } else {
+                playerWin++;
+                return scissorsBeatPaper;
+            }
+
+            
         }
-    }   else if(p === 'paper') {
-        if(c === 'scissors') {
-            return 'computer';
-        }   else {
-            return 'player';
-        }
-    }    else if(p === 'scissors') {
-        if(c === 'rock') {
-            return 'computer';
-        }   else {
-            return 'player'; 
-        }
+    
+    //  create div DOM for all results
+    const container = document.querySelector("#container");
+    const resultsDiv = document.createElement("div");
+    resultsDiv.style.marginTop = "20px";
+    container.appendChild(resultsDiv);
+
+    //  create player win tracking DOM 
+    const playerWinText = document.createElement("p");
+    playerWinText.style.color = "blue";
+    playerWinText.textContent = "Player Win totals: " + playerWin;
+    resultsDiv.appendChild(playerWinText);
+
+    //  create computer win tracking DOM
+    const computerWinText = document.createElement("p");
+    computerWinText.style.color = "blue";
+    computerWinText.textContent = "Computer Win totals: " + computerWin;
+    resultsDiv.appendChild(computerWinText);
+
+    //  create battle win text DOM
+    const battleWinText = document.createElement("p");
+    battleWinText.style.color = "black";
+    resultsDiv.appendChild(battleWinText);
+    
+    //  create game win text DOM
+    const gameWinText = document.createElement("p");
+    gameWinText.style.color = "orange";
+    gameWinText.textContent = gameWinner;
+    resultsDiv.appendChild(gameWinText);
+
+    //  determine who won to five points first
+    function endGame() {
+        if (playerWin == 5) {
+            gameWinner = "YOU WIN!";
+            gameWinText.textContent = gameWinner;
+            
+            //  disable game buttons
+            document.getElementById("rock").disabled = true;
+            document.getElementById("paper").disabled = true;
+            document.getElementById("scissors").disabled = true;
+            
+            //  create new DOM button to replay
+            const playAgainButton = document.createElement("button");
+            playAgainButton.textContent = "Play Again!";
+            resultsDiv.appendChild(playAgainButton);
+            
+            //  if clicked, reload page
+            playAgainButton.addEventListener('click', () => {
+                location.reload();
+                })
+        } else if (computerWin == 5) {
+            gameWinner = "COMPUTER WINS!";
+            gameWinText.textContent = gameWinner;
+            
+            //  disable game buttons
+            document.getElementById("rock").disabled = true;
+            document.getElementById("paper").disabled = true;
+            document.getElementById("scissors").disabled = true;
+            
+            //  create new DOM button to replay
+            const playAgainButton = document.createElement("button");
+            playAgainButton.textContent = "Play Again!";
+            resultsDiv.appendChild(playAgainButton);
+            
+            //  if clicked, reload page
+            playAgainButton.addEventListener('click', () => {
+                location.reload();
+                })
+        }   
     }
 }
 
-function showWinner(winner, computerChoice) {
-    // Win
-    if(winner === 'player') {
-        // Inc player score
-        scoreboard.player++;
-        // Show modal result
-        result.innerHTML = `
-        <h1 class="text-win">You Win</h1>
-        <i class="fa-regular fa-hand-${computerChoice} fa-10x"></i>
-        <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>
-        `;
-    // Lose
-    }   else if (winner === 'computer') {
-        // Inc player score
-        scoreboard.computer++;
-        // Show modal result
-        result.innerHTML = `
-        <h1 class="text-lose">You Lose</h1>
-        <i class="fa-regular fa-hand-${computerChoice} fa-10x"></i>
-        <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>
-        `;
-
-    // Draw
-    }   else {
-        result.innerHTML = `
-        <h1>It's A Draw</h1>
-        <i class="fa-regular fa-hand-${computerChoice} fa-10x"></i>
-        <p>Computer Chose <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>
-        `;
-    }
-    // Show score
-    score.innerHTML = `
-    <p>Player: ${scoreboard.player}</p>
-    <p>Computer: ${scoreboard.computer}</p>
-    `;
-
-modal.style.display = 'block';
-}
-
-// Restart game
-function restartGame() {
-    scoreboard.player = 0;
-    scoreboard.computer = 0;
-    score.innerHTML = `
-    <p>Player: 0</p>
-    <p>Computer: 0</p>
-    `
-
-}
-
-// Clear modal
-function clearModal(e) {
-    if (e.target === modal) {
-        modal.style.display = 'none';
-    }
-}
-
-// Event listener
-choices.forEach(choice => choice.addEventListener('click', play));
-window.addEventListener('click', clearModal);
-restart.addEventListener('click', restartGame);
+//  function call to start the game
+game();
